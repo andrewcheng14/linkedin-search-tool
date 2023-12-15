@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Tool - Recruiters</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            text-align: left;
+        }
+        .message-template {
+            margin-bottom: 20px;
+        }
+        .recruiter {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Message Template</h1>
+
+    {% if message_template %}
+        <div class="message-template">
+            <p>Hi [Recruiter Name], I study {{ major }} at {{ university }} and I'm a big fan of {{ company }}. I'm interested in {{ target_role }} roles at {{ company }} and believe I would be a great fit given my background. If you have the time, I’d love to discuss how my experience matches the position.</p>
+        </div>
+    {% endif %}
+
+    <h1>Recruiter Search Results</h1>
+    {% if recruiters %}
+        <ul>
+            {% for recruiter in recruiters %}
+                <li>
+                    <h2>{{ recruiter['name'] }}</h2>
+                    <p>{{ recruiter['position_title'] }}</p>
+                    <p>LinkedIn Profile: <a href="{{ recruiter['profile_url'] }}" target="_blank">{{ recruiter['profile_url'] }}</a></p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No recruiters found.</p>
+    {% endif %}
+</body>
+</html>
